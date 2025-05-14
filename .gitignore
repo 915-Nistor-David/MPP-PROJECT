@@ -36,3 +36,4 @@ yarn-error.log*
 # Optional: ignore system files
 Thumbs.db
 
+"backend/uploads/" 
