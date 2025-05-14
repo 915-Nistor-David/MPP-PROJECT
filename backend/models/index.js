@@ -1,18 +1,30 @@
 'use strict';
 
-const fs        = require('fs');
-const path      = require('path');
+const fs      = require('fs');
+const path    = require('path');
 const Sequelize = require('sequelize');
-const process   = require('process');
-const basename  = path.basename(__filename);
-const env       = process.env.NODE_ENV || 'development';
-const config    = require(__dirname + '/../config/config.json')[env];
-const db        = {};
+const basename = path.basename(__filename);
 
+// 1️⃣ Determine environment
+const env    = process.env.NODE_ENV || 'development';
+
+// 2️⃣ Load the JS config (we replaced config.json with config.js)
+const config = require(__dirname + '/../config/config.js')[env];
+
+const db = {};
 let sequelize;
+
+// 3️⃣ Initialise Sequelize: either via DATABASE_URL or via explicit credentials
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  // e.g. in production on Render
+  sequelize = new Sequelize(process.env[config.use_env_variable], {
+    ...config,
+    // ensure we don’t accidentally override the env var URL
+    dialect:    config.dialect,
+    dialectOptions: config.dialectOptions
+  });
 } else {
+  // local dev / test (MySQL)
   sequelize = new Sequelize(
     config.database,
     config.username,
@@ -21,45 +33,27 @@ if (config.use_env_variable) {
   );
 }
 
-// 1) Dynamically import all model files
+// 4️⃣ Auto-import all .js model files in this directory
 fs
   .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
+  .filter(file =>
+    file.indexOf('.') !== 0 &&
+    file !== basename &&
+    file.slice(-3) === '.js'
+  )
   .forEach(file => {
-    const modelDef = require(path.join(__dirname, file));
-    const model    = modelDef(sequelize, Sequelize.DataTypes);
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
-// 2) If any model implements an `associate` method, call it
+// 5️⃣ Run any associations (if defined)
 Object.keys(db).forEach(modelName => {
-  if (typeof db[modelName].associate === 'function') {
+  if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
-// 3) Explicitly define Borrower ↔ Loan associations
-//    (in case you haven't added `associate` in each model file)
-if (db.Borrower && db.Loan) {
-  db.Borrower.hasMany(db.Loan, {
-    foreignKey: 'borrowerId',
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
-  });
-  db.Loan.belongsTo(db.Borrower, {
-    foreignKey: 'borrowerId',
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
-  });
-}
-
+// 6️⃣ Export
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
