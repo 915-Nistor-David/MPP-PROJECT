@@ -1,21 +1,27 @@
+// backend/seeders/20250519184549-demo-borrowers.js
 'use strict';
+const { faker } = require('@faker-js/faker');
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    // build an array of 100 000 fake borrowers… (your existing logic here)
-    const borrowers = Array.from({ length: 100000 }, () => ({
-      firstName: Sequelize.literal(`faker.name.firstName()`),
-      lastName:  Sequelize.literal(`faker.name.lastName()`),
-      email:     Sequelize.literal(`faker.internet.email()`),
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }));
+  async up (queryInterface) {
+    const rows = [];
 
-    // NOTE: table name must match your CREATE TABLE migration: "Borrowers"
-    await queryInterface.bulkInsert('Borrowers', borrowers, {});
+    // ⚠️ 100 000 rows can take a LONG time on free Render; start with 5 000–10 000
+    for (let i = 0; i < 5000; i++) {
+      rows.push({
+        firstName: faker.person.firstName(),   // plain strings, not SQL
+        lastName:  faker.person.lastName(),
+        email:     faker.internet.email(),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      });
+    }
+
+    // table name must match the migration: "Borrowers"
+    await queryInterface.bulkInsert('Borrowers', rows);
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Borrowers', null, {});
+  async down (queryInterface) {
+    await queryInterface.bulkDelete('Borrowers', null);
   }
 };
