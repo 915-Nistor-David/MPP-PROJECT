@@ -1,27 +1,21 @@
 'use strict';
 
-const { faker } = require('@faker-js/faker');
-
 module.exports = {
   async up (queryInterface, Sequelize) {
-    // generate 10 demo borrowers
-    const borrowers = Array.from({ length: 10 }).map(() => ({
-      firstName: faker.name.firstName(),
-      lastName:  faker.name.lastName(),
-      email:     faker.internet.email().toLowerCase(),
+    // build an array of 100 000 fake borrowers… (your existing logic here)
+    const borrowers = Array.from({ length: 100000 }, () => ({
+      firstName: Sequelize.literal(`faker.name.firstName()`),
+      lastName:  Sequelize.literal(`faker.name.lastName()`),
+      email:     Sequelize.literal(`faker.internet.email()`),
       createdAt: new Date(),
-      updatedAt: new Date(),
+      updatedAt: new Date()
     }));
 
+    // NOTE: table name must match your CREATE TABLE migration: "Borrowers"
     await queryInterface.bulkInsert('Borrowers', borrowers, {});
   },
 
   async down (queryInterface, Sequelize) {
-    // this removes *all* emails matching our demo faker pattern
-    await queryInterface.bulkDelete(
-      'Borrowers',
-      { email: { [Sequelize.Op.like]: '%@%.' } },
-      {}
-    );
+    await queryInterface.bulkDelete('Borrowers', null, {});
   }
 };
