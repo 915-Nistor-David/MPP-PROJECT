@@ -1,0 +1,87 @@
+/* EditLoanPage.css */
+
+/* Optional if you want a global background for the entire page:
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f4ff;
+} 
+*/
+
+/* Header section for title & subtitle */
+.edit-loan-header {
+    text-align: center;
+    padding: 40px 0 20px;
+  }
+  
+  .edit-loan-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .edit-loan-header p {
+    color: #666;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  /* Card-like container */
+  .edit-loan-container {
+    max-width: 500px;
+    margin: 0 auto 40px; /* center horizontally, add bottom spacing */
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Form group styling */
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #007bff; /* highlight on focus */
+  }
+  
+  /* Submit button */
+  .button-submit {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-submit:hover {
+    background-color: #0056b3;
+  }
+  

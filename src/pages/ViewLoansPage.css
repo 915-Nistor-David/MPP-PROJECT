@@ -1,0 +1,155 @@
+/* ViewLoansPage.css */
+
+/* Page background & base font */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f4ff; /* Lighter, soft blue background */
+}
+
+/* A container to center and style the main section */
+.view-loans-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff; /* white container */
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #c5cbe3; /* subtle border color */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header for the page title */
+.view-loans-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3f51b5; /* vibrant indigo color */
+}
+
+.view-loans-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Container for the search and sort controls */
+.search-sort-row {
+  display: flex;
+  flex-wrap: wrap; /* so it stacks on smaller screens if needed */
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.search-sort-row label {
+  font-weight: 600;
+  margin-right: 8px;
+  color: #3f51b5;
+}
+
+.search-sort-row input[type="text"],
+.search-sort-row select {
+  padding: 8px;
+  border: 1px solid #90caf9; /* light blue border */
+  border-radius: 4px;
+  min-width: 180px; /* give a bit of width */
+  font-size: 14px;
+}
+
+/* Table styling */
+.loans-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.loans-table thead {
+  background-color: #3f51b5; /* vibrant indigo for header */
+  color: #ffffff;
+}
+
+.loans-table th,
+.loans-table td {
+  border: 1px solid #c5cbe3;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.loans-table th {
+  font-weight: 600;
+}
+
+.loans-table tbody tr:hover {
+  background-color: #e8eaf6;
+}
+
+/* Action buttons container (Edit + Delete) */
+.action-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+/* Edit button (green) */
+.edit-button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.edit-button:hover {
+  background-color: #43a047; /* slightly darker green */
+}
+
+/* Delete button (red) */
+.delete-button {
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f; /* slightly darker red */
+}
+
+/* Optional styling for any other buttons (e.g., Add Loan) */
+button {
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-right: 8px; /* spacing if you have multiple buttons */
+}
+
+button:hover {
+  background-color: #303f9f; /* darker indigo on hover */
+}
+
+
+.amount-cell {
+  /* default styling for amount cells */
+  padding: 8px;
+}
+
+/* Highlight styles (adjust the colors as needed) */
+.amount-high {
+  background-color: #ff9999; /* example: light red for the highest */
+}
+.amount-low {
+  background-color: #99ff99; /* example: light green for the lowest */
+}
+.amount-average {
+  background-color: #ffff99; /* example: light yellow for average */
+}

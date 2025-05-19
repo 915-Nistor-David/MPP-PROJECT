@@ -1,0 +1,96 @@
+/* AddLoanPage.css */
+
+/* Page background & base styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4ff; /* A soft background color */
+  }
+  
+  /* Container for the entire section */
+  .add-loan-header {
+    text-align: center;
+    padding: 40px 0 20px;
+  }
+  
+  .add-loan-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .add-loan-header p {
+    color: #666;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  /* Card-like container for the form */
+  .add-loan-container {
+    max-width: 500px;
+    margin: 0 auto 40px; /* center horizontally, add spacing at bottom */
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Each form group for label + input */
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  /* Label styling */
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  /* Text/Number/Select fields */
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #007bff; /* highlight border on focus */
+  }
+  
+  /* Submit button */
+  .button-submit {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Optional note for required fields */
+  .required-note {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+  

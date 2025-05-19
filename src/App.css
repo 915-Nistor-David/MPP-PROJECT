@@ -1,0 +1,14 @@
+/* src/App.css */
+
+nav {
+  margin-bottom: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
